@@ -1,0 +1,106 @@
+{
+ "Resources": {
+  "MYLambdaMainFuncServiceRoleA8B8E851": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "applicationstack/MYLambdaMainFunc/ServiceRole/Resource"
+   }
+  },
+  "MYLambdaMainFuncA3B724F3": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::ImportValue": "infrastrcuturestack:ExportsOutputRefmygoldbucketCF53560D2AEC5345"
+     },
+     "S3Key": "index.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "MYLambdaMainFuncServiceRoleA8B8E851",
+      "Arn"
+     ]
+    },
+    "Handler": "index.handler",
+    "Runtime": "python3.9"
+   },
+   "DependsOn": [
+    "MYLambdaMainFuncServiceRoleA8B8E851"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "applicationstack/MYLambdaMainFunc/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zXIywrCMBBA0W/pfjI+anFfwbXEDyjTNOKYFzQJUkL+XUt1dS/niN0J9w29o1CTEZZHLPdEysCXhhJb7LMyOvUUNVhy40RYrtmrxMHD5eH/X4HJYZHB6pXX1gpSx5BntdHvK9yW9Ax+1+IZD13zisxizj6x0yi3fgBDNbxDlwAAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "applicationstack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

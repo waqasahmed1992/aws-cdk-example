@@ -1,0 +1,166 @@
+{
+  "version": "22.0.0",
+  "artifacts": {
+    "infrastrcuturestack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "infrastrcuturestack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "infrastrcuturestack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://964726160290/us-east-1",
+      "properties": {
+        "templateFile": "infrastrcuturestack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::964726160290:role/cdk-hnb659fds-deploy-role-964726160290-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::964726160290:role/cdk-hnb659fds-cfn-exec-role-964726160290-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-964726160290-us-east-1/9dd10e2fc1474ca69339203e44086042c896c0900d7f3b27917649b4fdb666e8.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "infrastrcuturestack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::964726160290:role/cdk-hnb659fds-lookup-role-964726160290-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "infrastrcuturestack.assets"
+      ],
+      "metadata": {
+        "/infrastrcuturestack/mygoldbucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mygoldbucketCF53560D"
+          }
+        ],
+        "/infrastrcuturestack/mygoldbucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mygoldbucketPolicyD194B49B"
+          }
+        ],
+        "/infrastrcuturestack/mygoldbucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mygoldbucketAutoDeleteObjectsCustomResourceD888DB49"
+          }
+        ],
+        "/infrastrcuturestack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/infrastrcuturestack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/infrastrcuturestack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/infrastrcuturestack/Exports/Output{\"Ref\":\"mygoldbucketCF53560D\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefmygoldbucketCF53560D2AEC5345"
+          }
+        ],
+        "/infrastrcuturestack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/infrastrcuturestack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "infrastrcuturestack"
+    },
+    "applicationstack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "applicationstack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "applicationstack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://964726160290/us-east-1",
+      "properties": {
+        "templateFile": "applicationstack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::964726160290:role/cdk-hnb659fds-deploy-role-964726160290-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::964726160290:role/cdk-hnb659fds-cfn-exec-role-964726160290-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-964726160290-us-east-1/53925ddab4f09d968a60b4c052c0f178435dbdfca3172898b9037c76f9ac8626.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "applicationstack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::964726160290:role/cdk-hnb659fds-lookup-role-964726160290-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "infrastrcuturestack",
+        "applicationstack.assets"
+      ],
+      "metadata": {
+        "/applicationstack/MYLambdaMainFunc/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MYLambdaMainFuncServiceRoleA8B8E851"
+          }
+        ],
+        "/applicationstack/MYLambdaMainFunc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MYLambdaMainFuncA3B724F3"
+          }
+        ],
+        "/applicationstack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/applicationstack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/applicationstack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "applicationstack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
